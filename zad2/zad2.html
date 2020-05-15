@@ -19,16 +19,18 @@
             </div>
         </div>
 
-        <!--Przyjęcie rozmiaru problemu i rozpoczęcie obliczeń-->
+        <!--Przyjęcie rozmiaru problemu i zakresów-->
         <div class="container">
+
+            <!--Rozmiar problemu-->
             <div class="row">
                 <div class="input-group md-2 col-4">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">Rozmiar problemu:</span>
                     </div>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    <input type="text" class="form-control" value="10" id="problemSizeValue" aria-describedby="basic-addon3">
                 </div>
-                <button type="button" class="btn btn-primary" disabled>Rozpocznij obliczanie minimum</button>
+                
             </div>
 
             <!--Wybór zakresu losowanych liczb-->
@@ -39,7 +41,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">Od:</span>
                     </div>
-                    <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
+                    <input class="form-control" type="number" value="-100" id="minNumberValue" name="quantity" min="-100" max="0">
                 </div>
 
                 <!--Zakres do-->
@@ -47,12 +49,25 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon3">Do:</span>
                     </div>
-                    <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
+                    <input class="form-control" type="number" value="100" id="maxNumberValue" name="quantity" min="1" max="100">
                 </div>
 
-                <button type="button" class="btn btn-primary mr-2">Wylosuj zbiór</button>
+                <button type="button" class="btn btn-primary mr-2" id="drawArrayOfNumbers">Wylosuj zbiór</button>
 
             </div>
+
+
+            <!--Rozpoczęcie obliczeń-->
+            <div class="row mt-5">
+
+                <div class="input-group col-5">
+                    <button type="button" class="btn btn-primary" disabled>Rozpocznij obliczanie minimum</button>
+
+                </div>
+
+            </div>
+            
+
         </div>
 
 
@@ -64,16 +79,14 @@
         </div>
 
 
+
+
 <!-- 
-Wyliczenie 
 
-Rozmiar problemu
-
-Przycisk: Losuj
 
 Uruchomić obliczanie jako worker
 
-Zrobić progress bar -->
+ -->
 
 
 
