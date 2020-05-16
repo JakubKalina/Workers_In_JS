@@ -1,0 +1,10 @@
+#resultsBlock {
+    display: none !important;
+    background-color: lightblue !important;
+}
+
+#lowestSumSequence {
+    word-wrap: break-word !important;
+    line-break: normal !important;
+    display: block !important;
+}
