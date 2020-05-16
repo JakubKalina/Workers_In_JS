@@ -27,7 +27,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Ilość urzędników:</span>
                                     </div>
-                                    <input class="form-control col-3" type="number" value="3" id="minNumberValue" name="quantity" min="3" max="20">
+                                    <input class="form-control col-3" type="number" value="3" id="numberOfEmployees" name="quantity" min="3" max="20">
                                 </div>
 
                                 <!--Max długość kolejki-->
@@ -35,7 +35,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Maksymalna długość kolejki:</span>
                                     </div>
-                                    <input class="form-control col-3" type="number" value="10" id="maxNumberValue" name="quantity" min="1" max="50">
+                                    <input class="form-control col-3" type="number" value="10" id="numberOfPeopleInQueue" name="quantity" min="1" max="50">
                                 </div>
 
                             </div>
@@ -54,21 +54,21 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Mu:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="3" id="minNumberValue" name="quantity" min="3" max="20">
+                                    <input class="form-control col-4" type="number" value="3" id="muValue" name="quantity" min="3" max="20">
                                 </div>
 
                                 <div class="input-group md-2 col">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Sigma:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="10" id="maxNumberValue" name="quantity" min="1" max="50">
+                                    <input class="form-control col-4" type="number" value="10" id="sigmaValue" name="quantity" min="1" max="50">
                                 </div>
 
                                 <div class="input-group md-2 col">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Maksymalny czas:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="10" id="maxNumberValue" name="quantity" min="1" max="50">
+                                    <input class="form-control col-4" type="number" value="10" id="maxTimeNormalValue" name="quantity" min="1" max="50">
                                 </div>
 
                             </div>
@@ -88,14 +88,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Lambda:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="3" id="minNumberValue" name="quantity" min="3" max="20">
+                                    <input class="form-control col-4" type="number" value="3" id="lambdaValue" name="quantity" min="3" max="20">
                                 </div>
 
                                 <div class="input-group md-2 col">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Krok:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="10" id="maxNumberValue" name="quantity" min="1" max="50">
+                                    <input class="form-control col-4" type="number" value="10" id="stepValue" name="quantity" min="1" max="50">
                                 </div>
 
                                 
@@ -103,7 +103,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Maksymalny czas:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="10" id="maxNumberValue" name="quantity" min="1" max="50">
+                                    <input class="form-control col-4" type="number" value="10" id="maxTimeExponentialValue" name="quantity" min="1" max="50">
                                 </div>
 
                             </div>
@@ -122,14 +122,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Łączna ilość obsłużonych:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="0" readonly>
+                                    <input class="form-control col-4" id="totalNumberOfServedPeople" type="number" value="0" readonly>
                                 </div>
 
                                 <div class="input-group md-2 col">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3">Łączna ilość odrzuconych:</span>
                                     </div>
-                                    <input class="form-control col-4" type="number" value="0" readonly>
+                                    <input class="form-control col-4" id="totalNumberOfRejectedPeople" type="number" value="0" readonly>
                                 </div>
 
                                 <div class="input-group md-2 col">
@@ -164,6 +164,7 @@
                                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
+
                             </div>
                         </div>
 
@@ -177,6 +178,7 @@
                                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
+
                             </div>
                         </div>
 
@@ -190,6 +192,7 @@
                                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                                     </svg>
                                 </div>
+                                
                             </div>
                         </div>
 
