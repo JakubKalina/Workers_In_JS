@@ -5,14 +5,55 @@ class ProblemSolver {
         this.arrayOfNumbers = arrayOfNumbers;
     }
 
-    solution(A) {
+    solutionSlow(A) {
+
+        if (A.length == 0) return 0;
+
+        if (1 == A.length) return Math.abs(A[0]);
+
+        let arrayOfSums = new Array(A.length + 1);
+        let result = Number.MAX_SAFE_INTEGER;
+
+        arrayOfSums[0] = 0;
+
+        for (var i = 0; i < A.length; i++) {
+            arrayOfSums[i + 1] = A[i] + arrayOfSums[i];
+        }
+
+        arrayOfSums.sort();
+
+        let counterStep = Math.floor(arrayOfSums.length / 100);
+        let counterTmp = 0;
+
+        for (var i = 1; i < arrayOfSums.length; i++) {
+            result = Math.min(result, Math.abs(arrayOfSums[i] - arrayOfSums[i - 1]));
+            if (counterTmp == counterStep) {
+                postMessage({
+                    action: 'notifyProgress',
+                    status: 'done'
+                });
+                counterTmp = 0;
+            }
+        }
+
+        console.log(result);
+
+        // return minAbsSum;
+        postMessage({
+            action: 'finishedCalculations',
+            lowestSum: result
+        });
+
+    }
+
+    solutionFast(A) {
         let lowestSum;
         let ArrayLength = A.length;
         let maxValue = 0;
 
-        for(let i = 0 ; i < ArrayLength; i++) {
+        for (let i = 0; i < ArrayLength; i++) {
             A[i] = Math.abs(A[i]);
-            if(maxValue > A[i]) {
+            if (maxValue > A[i]) {
                 maxValue = maxValue;
             } else {
                 maxValue = A[i];
@@ -21,24 +62,24 @@ class ProblemSolver {
 
         let SumOfElements = 0;
 
-        for(let i = 0 ; i < A.length; i++) {
+        for (let i = 0; i < A.length; i++) {
             SumOfElements += A[i];
         }
 
         let countMultiple = [];
 
-        for(let i = 0 ; i < maxValue + 1; i++) {
+        for (let i = 0; i < maxValue + 1; i++) {
             countMultiple.push(0);
         }
 
         // Liczenie wystąpień
-        for(let i = 0 ; i < ArrayLength; i++) {
+        for (let i = 0; i < ArrayLength; i++) {
             countMultiple[A[i]] += 1;
         }
 
         let tmp = [];
 
-        for(let i = 0 ; i < SumOfElements + 1; i++) {
+        for (let i = 0; i < SumOfElements + 1; i++) {
             tmp.push(-1);
         }
 
@@ -47,21 +88,24 @@ class ProblemSolver {
         let counterTmp = 0;
 
 
-        for(let a = 1; a < maxValue + 1 ; a++) {
-            if(countMultiple[a] > 0){
-                for(let j = 0; j < SumOfElements; j++) {
+        for (let a = 1; a < maxValue + 1; a++) {
+            if (countMultiple[a] > 0) {
+                for (let j = 0; j < SumOfElements; j++) {
 
                     counterTmp++;
-                    if(counterTmp == counterStep) {
-                        postMessage({action: 'notifyProgress', status: 'done'});
+                    if (counterTmp == counterStep) {
+                        postMessage({
+                            action: 'notifyProgress',
+                            status: 'done'
+                        });
                         counterTmp = 0;
                     }
 
-                    if(tmp[j] >= 0) {
+                    if (tmp[j] >= 0) {
                         tmp[j] = countMultiple[a];
-                    }  
-                    if((j >= a) && (tmp[j-a] > 0)) {
-                        tmp[j] = tmp[j-a] -1;
+                    }
+                    if ((j >= a) && (tmp[j - a] > 0)) {
+                        tmp[j] = tmp[j - a] - 1;
                     }
                 }
             }
@@ -69,9 +113,9 @@ class ProblemSolver {
 
         let result = SumOfElements;
 
-        for(let i = 0 ; i < (SumOfElements / 2) + 1; i++ ) {
-            if(tmp[i] >= 0) {
-                if(result < SumOfElements - 2 * i) {
+        for (let i = 0; i < (SumOfElements / 2) + 1; i++) {
+            if (tmp[i] >= 0) {
+                if (result < SumOfElements - 2 * i) {
                     result = result;
                 } else {
                     result = SumOfElements - 2 * i;
@@ -83,13 +127,22 @@ class ProblemSolver {
 
         //     postMessage({action: 'notifyProgress', status: 'done'});
 
-        postMessage({action: 'finishedCalculations', lowestSum: lowestSum});
+        postMessage({
+            action: 'finishedCalculations',
+            lowestSum: lowestSum
+        });
     }
 }
 
-addEventListener('message', ({data}) => {
-    if(data.action == 'startCalculations') {
+addEventListener('message', ({
+    data
+}) => {
+    if (data.action == 'startCalculationsFast') {
         let solver = new ProblemSolver(data.arrayOfNumbers);
-        solver.solution(solver.arrayOfNumbers);
+        solver.solutionFast(solver.arrayOfNumbers);
+    }
+    if (data.action == 'startCalculationsSlow') {
+        let solver = new ProblemSolver(data.arrayOfNumbers);
+        solver.solutionSlow(solver.arrayOfNumbers);
     }
 });
